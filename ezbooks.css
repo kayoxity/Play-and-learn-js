@@ -1,47 +1,45 @@
 body
 {
 	overflow-x: hidden;
-/*	overflow-y: hidden;*/
+	overflow-y: hidden;
 	padding: 0;
 	margin: 0;
+	background: url('Background1.png');
 }
 
 h1
 {
     font-family: "Raleway Thin";
-    font-size: 200px;
-}
-
-h1
-{
-	line-height: 0;
+    font-size: 35vh;
+/*	display: block;*/
+	line-height: 1;
+	margin: 0 0 0 0;
+	cursor: default;
 }
 
 form input
 {
 	border: none;
 	background: none;
-	font-size: 150px;
+	font-size: 30vh;
 	font-family: "Raleway Thin";
 	text-transform: uppercase;
 	padding-left: 25px;
-	width: 50%;
+	width: 180vh;
+	cursor: default;
 }
 
 #here
 {
-	transition: text-shadow 0.5s;
-	transition-timing-function: linear;
-/*	text-shadow: 0.3em 0em rgb(225,162,62);*/
+	margin-top: 20vh;
+	text-align: right;
 	font-style: normal;
 	font-family: "Muncie";
 	font-weight: 200;
-	font-size: 250px;
-	margin: auto;
-	text-align: center;
-	color: black;
+	font-size: 50vh;
+	width: 100%;
 	display: none;
-/*	transform: scale(1,-1);*/
+	transition: all 0.3s ease-out;
 }
 
 #progressbar
@@ -83,4 +81,36 @@ form input
 	width: 0%;
 	background: black;
 	position: absolute;
+}
+
+.second
+{
+	font-family: "Muncie";
+	font-size: 50vh;
+	text-align: right;
+	display: none;
+	transition: all 0.3s ease-out;
+	color: lightgrey;
+}
+
+@keyframes fadeup {
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeup
+{
+	opacity: 0;
+    animation: fadeup .4s linear 1 forwards;
+}
+
+.black
+{
+	color: black;
+}
+
+.lightgrey
+{
+	color: lightgrey;
 }

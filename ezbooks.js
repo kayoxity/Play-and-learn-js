@@ -2,7 +2,7 @@
 var pool = "abcdefghijklmnopqrstuvwxyz1234567890#@!%&*?+";
 var poolarr = pool.split("");
 var name = "My First Page";
-var final = "";
+var final = ",";
 var fi = 0;
 
 // Random shuffling starts
@@ -24,12 +24,13 @@ function makeword(c)
 				{
 					clearInterval(r);
 				}
-			if(final.length < c.length)
+			if(final.length-1 < c.length)
 				{
-					document.getElementById("here").innerHTML = final + randompick();
+					document.getElementById("here").innerHTML = randompick() + final;
 				}
 		},40);
-	final = final + name.charAt(fi);fi++;
+	fi--;
+	final = name.charAt(fi) + final;
 	document.getElementById("here").innerHTML = final;
 }
 
@@ -45,6 +46,11 @@ function start(a)
 			if(i >= a.length)
 				{
 					clearInterval(t);
+					var b = document.getElementsByClassName("second");
+					for(var k = 0;k < b.length;k++)
+		{
+			b[k].style.display = "block";
+		}
 				}
 		},f);
 	
@@ -60,17 +66,13 @@ document.getElementById("nameform").addEventListener("keydown",function(event)
 		if (event.keyCode === 13) {
 			event.preventDefault();
 			name = document.getElementById("nameform").value.toUpperCase();
+			fi = name.length;
 			firstends();
 		}
 	});
 
 function firstends()
 {
-	var firstele = document.getElementsByClassName("first");
-	for(var i = 0;i < firstele.length;i++)
-		{
-			firstele[i].style.display = "none";
-		}
 	document.getElementById("progressbar").style.display = "block";
 	document.getElementById("progressbg").style.display = "block";
 	progressbgfunc();
@@ -139,6 +141,11 @@ function progressbgfunc()
 					   {
 		if(wid >= 100)
 			{
+				var firstele = document.getElementsByClassName("first");
+				for(var i = 0;i < firstele.length;i++)
+					{
+						firstele[i].style.display = "none";
+					}
 				clearInterval(t);
 			}
 		else
@@ -154,9 +161,48 @@ function second()
 {
 	var n = document.getElementById("here");
 	n.style.display = "block";
-	/*setTimeout(function()
-			  {
-					n.style.textShadow = "0.02em 0em rgb(225,162,62)";
-	},name.length*180);*/
 	start(name);
+	setTimeout(function()
+			   {
+					startsecond();
+	},3000);
+}
+
+function startsecond()
+{
+	var a = document.getElementsByClassName("second");
+	var j = 0,i = -100;
+	var time = 800;
+	var t = setInterval(function()
+					  {
+		if(j == a.length-1)
+			{
+				clearInterval(t);
+			}
+		for(var k = 0;k < a.length;k++)
+			{
+				document.getElementById("here").style.transform = "translate(0,"+i+"%)";
+				a[k].style.transform = "translate(0,"+i+"%)";
+				
+			}
+		a[j].classList.toggle("black");
+		if(j == 0)
+			{
+				document.getElementById("here").classList.add("lightgrey");
+			}
+		if(j>0)
+			{
+				a[j-1].classList.toggle("black");
+			}
+		i = i-100;
+		j++;
+	},time);
+	/*for(var j = 0;j <= a.length-4;j++)
+		{
+			setTimeout(function()
+			{
+				a[j].classList.toggle("fadeup");
+				a[j].style.display = "block";
+			},500);
+		}*/
 }
